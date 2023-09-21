@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 
 class auth_service {
@@ -29,7 +30,9 @@ class auth_service {
               .ref()
               .child("image/$_uid")
               .getDownloadURL();
-        } catch (e) {}
+        } catch (e) {
+          Fluttertoast.showToast(msg: "Somethig Went Wrong");
+        }
         await store.collection('numbers').doc(num).set({
           "uid": _uid,
           "name": name,
@@ -46,7 +49,9 @@ class auth_service {
           );
         }
       }
-    } on FirebaseAuthException catch (e) {}
+    } on FirebaseAuthException {
+      Fluttertoast.showToast(msg: "Somethig Went Wrong");
+    }
   }
 
 // ignore: non_constant_identifier_names
@@ -65,7 +70,9 @@ class auth_service {
           )
           .then((value) => () {});
       otp_send = true;
-    } catch (e) {}
+    } catch (e) {
+      Fluttertoast.showToast(msg: "Somethig Went Wrong");
+    }
   }
 
   Future<bool> _set_data(

@@ -33,7 +33,6 @@ class _live_chatState extends State<live_chat> {
     return Column(
       children: [
         FirebaseAnimatedList(
-          physics: BouncingScrollPhysics(),
           controller: _scrollController,
           query: chats,
           itemBuilder: (context, snapshot, animation, index) {
