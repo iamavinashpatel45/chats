@@ -1,12 +1,12 @@
-class contacts_modul {
+class contacts_module {
   String? name;
   String? num;
   String? id;
   String? image;
 
-  contacts_modul({this.name, this.num, this.id, this.image});
+  contacts_module({this.name, this.num, this.id, this.image});
 
-  contacts_modul.fromJson(Map<String, dynamic> json) {
+  contacts_module.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     num = json['num'];
     id = json['id'];

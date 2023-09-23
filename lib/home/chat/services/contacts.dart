@@ -1,4 +1,4 @@
-import 'package:chats/home/chat/services/contact_modul.dart';
+import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:chats/local_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fast_contacts/fast_contacts.dart';
@@ -7,7 +7,7 @@ import 'package:phone_number/phone_number.dart';
 
 class contacts_service {
   List<Contact> contacts = [];
-  List<contacts_modul> contact_modul = [];
+  List<contacts_module> contact_modul = [];
   final stores = FirebaseFirestore.instance;
   final box = GetStorage();
 
@@ -22,7 +22,7 @@ class contacts_service {
               .format(contacts[i].phones[0].number, "IN");
           if (s1 == s2) {
             contact_modul.add(
-              contacts_modul(
+              contacts_module(
                 name: contacts[i].displayName,
                 num: s2,
                 id: element.get("uid"),

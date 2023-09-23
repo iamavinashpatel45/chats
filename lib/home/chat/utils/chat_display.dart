@@ -18,6 +18,10 @@ class chat_display extends StatelessWidget {
       tail: false,
       isSender: is_send,
       color: Colors.blue,
+      textStyle: const TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+      ),
     );
   }
 }

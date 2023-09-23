@@ -13,7 +13,7 @@ class auth_service {
   bool otp_send = false;
 
   // ignore: non_constant_identifier_names
-  Future<void> fun_otp_verify(BuildContext context, String num, String otp,
+  Future<bool> fun_otp_verify(BuildContext context, String num, String otp,
       String name, Widget widget) async {
     try {
       await auth.signInWithCredential(
@@ -32,6 +32,7 @@ class auth_service {
               .getDownloadURL();
         } catch (e) {
           Fluttertoast.showToast(msg: "Somethig Went Wrong");
+          return false;
         }
         await store.collection('numbers').doc(num).set({
           "uid": _uid,
@@ -49,8 +50,10 @@ class auth_service {
           );
         }
       }
+      return true;
     } on FirebaseAuthException {
       Fluttertoast.showToast(msg: "Somethig Went Wrong");
+      return false;
     }
   }
 

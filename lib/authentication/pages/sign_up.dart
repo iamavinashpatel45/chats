@@ -14,7 +14,6 @@ class sign_up extends StatefulWidget {
 }
 
 class _sign_upState extends State<sign_up> {
-  bool _isotpsend = false;
   final auth_service _auth_service = auth_service();
   final TextEditingController _numTextEditingController =
       TextEditingController();
@@ -96,20 +95,12 @@ class _sign_upState extends State<sign_up> {
               const SizedBox(
                 height: 20,
               ),
-              InkWell(
-                onTap: () {
-                  setState(() {
-                    _isotpsend = !_isotpsend;
-                  });
-                },
-                child: auth_button(
-                  text: _isotpsend ? "Log In" : "Send OTP",
-                  widget: const home_page(),
-                  otpTextEditingController: _otpTextEditingController,
-                  numTextEditingController: _numTextEditingController,
-                  nameTextEditingController: _nameTextEditingController,
-                  service: _auth_service,
-                ),
+              auth_button(
+                widget: const home_page(),
+                otpTextEditingController: _otpTextEditingController,
+                numTextEditingController: _numTextEditingController,
+                nameTextEditingController: _nameTextEditingController,
+                service: _auth_service,
               ),
               const SizedBox(
                 height: 20,

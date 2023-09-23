@@ -1,4 +1,5 @@
 {
     "cmake.configureOnOpen": true,
-    "cmake.sourceDirectory": "E:/Android_Project/chats/chats/linux"
+    "cmake.sourceDirectory": "E:/Android_Project/chats/chats/linux",
+    "emulator.emulatorPath": "C:\\Users\\avina\\AppData\\Local\\Android\\Sdk\\emulator"
 }

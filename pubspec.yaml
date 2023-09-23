@@ -48,6 +48,9 @@ dependencies:
   chat_bubbles: ^1.5.0
   fluttertoast: ^8.2.2
   internet_connection_checker: ^1.0.0+1
+  permission_handler: ^11.0.0
+  encrypt: ^5.0.3
+  random_string: ^2.3.1
 
 dev_dependencies:
   flutter_test:

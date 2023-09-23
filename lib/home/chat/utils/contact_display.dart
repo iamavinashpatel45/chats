@@ -1,9 +1,9 @@
 import 'package:chats/home/chat/pages/chat_page.dart';
-import 'package:chats/home/chat/services/contact_modul.dart';
+import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:flutter/material.dart';
 
 class contacts_display extends StatelessWidget {
-  final contacts_modul contact;
+  final contacts_module contact;
 
   const contacts_display({
     super.key,

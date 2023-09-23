@@ -1,5 +1,5 @@
 import 'package:chats/home/chat/pages/contacts_list.dart';
-import 'package:chats/home/chat/services/contact_modul.dart';
+import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:chats/home/chat/utils/chat_list_display.dart';
 import 'package:chats/local_data.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -31,14 +31,14 @@ class _chat_listState extends State<chat_list> {
         child: const Icon(Icons.chat),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         child: FirebaseAnimatedList(
             query: chats,
             defaultChild: const Center(
               child: CircularProgressIndicator(),
             ),
             itemBuilder: (context, snapshot, animation, index) {
-              contacts_modul contacts = local_data.contact[0];
+              contacts_module contacts = local_data.contact[0];
               for (var element in local_data.contact) {
                 if (snapshot.key == element.id) {
                   contacts = element;
