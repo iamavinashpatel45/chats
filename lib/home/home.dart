@@ -40,37 +40,62 @@ class _home_pageState extends State<home_page> {
             ],
           ),
           actions: [
-            InkWell(
-              onTap: () async {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => account(),
+            PopupMenuButton(
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem(
+                    value: 1,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.account_box,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("Account"),
+                      ],
+                    ),
                   ),
-                );
-              },
-              child: const Icon(Icons.account_box),
-            ),
-            const SizedBox(
-              width: 50,
-            ),
-            InkWell(
-              onTap: () async {
-                await FirebaseAuth.instance.signOut();
-                // ignore: use_build_context_synchronously
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const sign_up(),
+                  const PopupMenuItem(
+                    value: 2,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.logout,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text("Log Out"),
+                      ],
+                    ),
                   ),
-                  (route) => false,
-                );
+                ];
               },
-              child: const Icon(Icons.logout),
+              onSelected: (value) async {
+                if (value == 1) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => account(),
+                    ),
+                  );
+                } else {
+                  await FirebaseAuth.instance.signOut();
+                  // ignore: use_build_context_synchronously
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const sign_up(),
+                    ),
+                    //(route) => false,
+                  );
+                }
+              },
             ),
-            const SizedBox(
-              width: 50,
-            )
           ],
         ),
         body: const TabBarView(

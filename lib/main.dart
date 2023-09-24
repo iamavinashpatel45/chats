@@ -16,6 +16,9 @@ void main() async {
   await GetStorage.init();
   runApp(
     MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
       home: myapp(),
     ),
   );
