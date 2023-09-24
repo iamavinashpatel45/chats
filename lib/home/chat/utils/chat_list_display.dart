@@ -85,14 +85,14 @@ class chat_list_display extends StatelessWidget {
                                     .value
                                     .toString()
                                     .contains("false")
-                                ? _chat_service.mess_decript(
+                                ? _chat_service.mess_decrypt(
                                     chat.children.last
                                         .child("message")
                                         .value
                                         .toString(),
                                     local_data.uid!,
                                   )
-                                : _chat_service.mess_decript(
+                                : _chat_service.mess_decrypt(
                                     chat.children.last
                                         .child("message")
                                         .value

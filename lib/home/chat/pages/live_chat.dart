@@ -36,15 +36,14 @@ class _live_chatState extends State<live_chat> {
       itemBuilder: (context, snapshot, animation, index) {
         var is_send = snapshot.child("type").value;
         String mes = is_send.toString().contains("true")
-            ? _chat_service.mess_decript(
+            ? _chat_service.mess_decrypt(
                 snapshot.child("message").value.toString(),
                 widget.contact.id!,
               )
-            : _chat_service.mess_decript(
+            : _chat_service.mess_decrypt(
                 snapshot.child("message").value.toString(),
                 local_data.uid!,
               );
-              print(snapshot.child("seen").value.toString().contains("false"));
         return chat_display(
           mes: mes,
           is_send: is_send.toString().contains("true"),

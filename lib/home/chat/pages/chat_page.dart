@@ -1,6 +1,7 @@
 import 'package:chats/home/chat/pages/live_chat.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:chats/home/chat/utils/bottomsheet.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 class chat_page extends StatefulWidget {
@@ -16,6 +17,41 @@ class chat_page extends StatefulWidget {
 }
 
 class _chat_pageState extends State<chat_page> {
+  bool _isonline = false;
+  bool _isload = false;
+  String _lastseen = "";
+
+  void _get_status() async {
+    await FirebaseDatabase.instance
+        .ref("online-status/${widget.contact.id}")
+        .get()
+        .then(
+          (value) => {
+            _set_sataus(value),
+          },
+        );
+  }
+
+  void _set_sataus(DataSnapshot dataSnapshot) {
+    _isonline = dataSnapshot.child("online").value.toString().contains("true");
+    _lastseen = dataSnapshot.child("lastseen").value.toString();
+    setState(() {
+      _isload = true;
+    });
+  }
+
+  @override
+  void initState() {
+    _get_status();
+    FirebaseDatabase.instance
+        .ref("online-status/${widget.contact.id}")
+        .onValue
+        .listen((event) {
+      _set_sataus(event.snapshot);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +70,21 @@ class _chat_pageState extends State<chat_page> {
             const SizedBox(
               width: 10,
             ),
-            Text(widget.contact.name!),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(widget.contact.name!),
+                _isload
+                    ? Text(
+                        _isonline ? "Online" : "lastseen: $_lastseen",
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      )
+                    : Container(),
+              ],
+            ),
           ],
         ),
       ),

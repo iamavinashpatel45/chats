@@ -45,7 +45,7 @@ class chat_services {
     return encrypter.encrypt(mes, iv: iv).base64;
   }
 
-  String mess_decript(String enc_mess, String uid) {
+  String mess_decrypt(String enc_mess, String uid) {
     final iv = IV.fromUtf8(uid.substring(0, 16));
     final encrypter = Encrypter(
       AES(

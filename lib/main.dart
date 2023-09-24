@@ -2,6 +2,7 @@ import 'package:chats/authentication/pages/sign_up.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:chats/home/chat/services/contacts.dart';
 import 'package:chats/home/home.dart';
+import 'package:chats/services/lifecyclemanagment.dart';
 import 'package:chats/local_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -70,6 +71,7 @@ class _myappState extends State<myapp> {
     }
   }
 
+
   @override
   void initState() {
     navigation();
@@ -78,6 +80,7 @@ class _myappState extends State<myapp> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addObserver(MyAppLifecycleObserver());
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
