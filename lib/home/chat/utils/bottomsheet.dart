@@ -1,15 +1,16 @@
-import 'package:chats/home/chat/services/chat.dart';
+import 'package:chats/home/chat/services/chat_services.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:flutter/material.dart';
 
 class bottomsheet extends StatelessWidget {
   final contacts_module contact;
   final TextEditingController _editingController = TextEditingController();
-  final chat_services _chat_services = chat_services();
+  final chat_services chat_service;
 
   bottomsheet({
     super.key,
     required this.contact,
+    required this.chat_service,
   });
 
   @override
@@ -30,18 +31,33 @@ class bottomsheet extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: TextField(
-                  controller: _editingController,
-                  style: const TextStyle(
-                    fontSize: 20,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: TextField(
+                        controller: _editingController,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
+                        maxLines: null,
+                      ),
+                    ),
                   ),
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
+                  InkWell(
+                    onTap: () {
+                      chat_service.image_picker(contact);
+                    },
+                    child: const Icon(Icons.image),
                   ),
-                  maxLines: null,
-                ),
+                  const SizedBox(
+                    width: 10,
+                  )
+                ],
               ),
             ),
           ),
@@ -51,8 +67,9 @@ class bottomsheet extends StatelessWidget {
           InkWell(
             onTap: () {
               if (_editingController.text.isNotEmpty) {
-                _chat_services.send_message(_editingController.text,contact);
-                _editingController.text="";
+                chat_service.send_message(
+                    _editingController.text, contact, false);
+                _editingController.text = "";
               }
             },
             child: Container(

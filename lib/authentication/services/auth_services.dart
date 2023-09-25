@@ -1,4 +1,5 @@
 import 'package:chats/local_data.dart';
+import 'package:chats/services/main_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -39,6 +40,8 @@ class auth_service {
           "name": name,
           "image": _image,
         });
+        final main_services _main_services = main_services();
+        await _main_services.set_online(_uid);
         if (await _set_data(name, _uid, num, _image)) {
           // ignore: use_build_context_synchronously
           Navigator.pushAndRemoveUntil(

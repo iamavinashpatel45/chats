@@ -1,4 +1,4 @@
-import 'package:chats/home/chat/services/contacts.dart';
+import 'package:chats/home/chat/services/contacts_services.dart';
 import 'package:chats/home/chat/utils/contact_display.dart';
 import 'package:chats/local_data.dart';
 import 'package:flutter/material.dart';

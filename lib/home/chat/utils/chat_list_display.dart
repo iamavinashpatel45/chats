@@ -1,5 +1,5 @@
 import 'package:chats/home/chat/pages/chat_page.dart';
-import 'package:chats/home/chat/services/chat.dart';
+import 'package:chats/home/chat/services/chat_services.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:chats/local_data.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -31,10 +31,11 @@ class chat_list_display extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              width: 1,
-            )),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            width: 1,
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Row(
@@ -81,24 +82,30 @@ class chat_list_display extends StatelessWidget {
                           width: 250,
                           child: Text(
                             chat.children.last
-                                    .child("type")
+                                    .child("image")
                                     .value
                                     .toString()
                                     .contains("false")
-                                ? _chat_service.mess_decrypt(
-                                    chat.children.last
-                                        .child("message")
+                                ? chat.children.last
+                                        .child("type")
                                         .value
-                                        .toString(),
-                                    local_data.uid!,
-                                  )
-                                : _chat_service.mess_decrypt(
-                                    chat.children.last
-                                        .child("message")
-                                        .value
-                                        .toString(),
-                                    contact.id!,
-                                  ),
+                                        .toString()
+                                        .contains("false")
+                                    ? _chat_service.mess_decrypt(
+                                        chat.children.last
+                                            .child("message")
+                                            .value
+                                            .toString(),
+                                        local_data.uid!,
+                                      )
+                                    : _chat_service.mess_decrypt(
+                                        chat.children.last
+                                            .child("message")
+                                            .value
+                                            .toString(),
+                                        contact.id!,
+                                      )
+                                : "📷 Photo",
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(

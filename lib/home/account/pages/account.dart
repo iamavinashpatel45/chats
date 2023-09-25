@@ -3,7 +3,7 @@ import 'package:chats/home/account/services/account_service.dart';
 import 'package:chats/home/account/utils/button.dart';
 import 'package:chats/local_data.dart';
 import 'package:flutter/material.dart';
-import 'package:images_picker/images_picker.dart';
+
 
 class account extends StatefulWidget {
   @override
@@ -15,10 +15,7 @@ class _accountState extends State<account> {
   final account_service _account_service = account_service();
 
   void _getimage() async {
-    _account_service.images = await ImagesPicker.pick(
-      count: 1,
-      pickType: PickType.image,
-    );
+    await _account_service.pick_image();
     setState(() {
       _isimageload = true;
     });

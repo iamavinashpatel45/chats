@@ -1,5 +1,6 @@
 import 'package:chats/home/chat/pages/live_chat.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
+import 'package:chats/home/chat/services/chat_services.dart';
 import 'package:chats/home/chat/utils/bottomsheet.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -20,17 +21,7 @@ class _chat_pageState extends State<chat_page> {
   bool _isonline = false;
   bool _isload = false;
   String _lastseen = "";
-
-  void _get_status() async {
-    await FirebaseDatabase.instance
-        .ref("online-status/${widget.contact.id}")
-        .get()
-        .then(
-          (value) => {
-            _set_sataus(value),
-          },
-        );
-  }
+  final chat_services _chat_service = chat_services();
 
   void _set_sataus(DataSnapshot dataSnapshot) {
     _isonline = dataSnapshot.child("online").value.toString().contains("true");
@@ -42,7 +33,6 @@ class _chat_pageState extends State<chat_page> {
 
   @override
   void initState() {
-    _get_status();
     FirebaseDatabase.instance
         .ref("online-status/${widget.contact.id}")
         .onValue
@@ -92,10 +82,12 @@ class _chat_pageState extends State<chat_page> {
         padding: const EdgeInsets.only(bottom: 80),
         child: live_chat(
           contact: widget.contact,
+          chat_service: _chat_service,
         ),
       ),
       bottomSheet: bottomsheet(
         contact: widget.contact,
+        chat_service: _chat_service,
       ),
     );
   }

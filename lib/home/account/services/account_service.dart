@@ -30,4 +30,11 @@ class account_service {
         );
     return _storage.child("image/${local_data.uid}").getDownloadURL();
   }
+
+  Future pick_image()async{
+    images = await ImagesPicker.pick(
+      count: 1,
+      pickType: PickType.image,
+    );
+  }
 }
