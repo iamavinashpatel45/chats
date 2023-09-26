@@ -4,7 +4,6 @@ import 'package:chats/home/account/utils/button.dart';
 import 'package:chats/local_data.dart';
 import 'package:flutter/material.dart';
 
-
 class account extends StatefulWidget {
   @override
   State<account> createState() => _accountState();
@@ -12,6 +11,7 @@ class account extends StatefulWidget {
 
 class _accountState extends State<account> {
   bool _isimageload = false;
+  bool _isupdate = false;
   final account_service _account_service = account_service();
 
   void _getimage() async {
@@ -73,10 +73,21 @@ class _accountState extends State<account> {
               height: 20,
             ),
             _isimageload
-                ? account_button(
-                    text: "Update",
-                    service: _account_service,
-                  )
+                ? _isupdate
+                    ? const CircularProgressIndicator(
+                      color: Colors.blue,
+                    )
+                    : InkWell(
+                        onTap: () {
+                          _account_service.update_image(context);
+                          setState(() {
+                            _isupdate = true;
+                          });
+                        },
+                        child: const account_button(
+                          text: "Update",
+                        ),
+                      )
                 : Container(),
           ],
         ),

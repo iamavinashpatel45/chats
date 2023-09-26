@@ -20,6 +20,7 @@ class account_service {
     });
     final add = GetStorage();
     add.write("image", _url);
+    local_data.image=_url;
     // ignore: use_build_context_synchronously
     Navigator.pop(context);
   }
