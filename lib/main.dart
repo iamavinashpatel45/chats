@@ -10,6 +10,7 @@ void main() async {
   await GetStorage.init();
   runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
