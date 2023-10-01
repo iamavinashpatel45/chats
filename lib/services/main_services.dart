@@ -1,3 +1,4 @@
+import 'package:chats/services/local_data.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,7 +8,6 @@ import 'package:chats/authentication/pages/sign_up.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
 import 'package:chats/home/chat/services/contacts_services.dart';
 import 'package:chats/home/home.dart';
-import 'package:chats/local_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class main_services {

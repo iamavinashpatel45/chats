@@ -1,4 +1,4 @@
-import 'package:chats/local_data.dart';
+import 'package:chats/services/local_data.dart';
 import 'package:chats/services/main_services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:chats/local_data.dart';
+import 'package:chats/services/local_data.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';

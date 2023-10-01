@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:chats/home/chat/modules/chat_module.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
-import 'package:chats/local_data.dart';
+import 'package:chats/services/local_data.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';

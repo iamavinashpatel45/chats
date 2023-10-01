@@ -4,7 +4,7 @@ import 'package:chats/home/chat/utils/chat_display.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:chats/local_data.dart';
+import 'package:chats/services/local_data.dart';
 
 class live_chat extends StatefulWidget {
   final contacts_module contact;

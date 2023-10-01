@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:chats/home/account/services/account_service.dart';
 import 'package:chats/home/account/utils/button.dart';
-import 'package:chats/local_data.dart';
+import 'package:chats/services/local_data.dart';
 import 'package:flutter/material.dart';
 
 class account extends StatefulWidget {

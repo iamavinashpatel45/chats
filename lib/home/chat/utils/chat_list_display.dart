@@ -1,7 +1,7 @@
 import 'package:chats/home/chat/pages/chat_page.dart';
 import 'package:chats/home/chat/services/chat_services.dart';
 import 'package:chats/home/chat/modules/contact_module.dart';
-import 'package:chats/local_data.dart';
+import 'package:chats/services/local_data.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
