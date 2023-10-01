@@ -1,14 +1,14 @@
 import 'package:chats/authentication/services/auth_services.dart';
 import 'package:flutter/material.dart';
 
-class auth_button extends StatefulWidget {
+class AuthButton extends StatefulWidget {
   final Widget widget;
   final TextEditingController otpTextEditingController;
   final TextEditingController numTextEditingController;
   final TextEditingController nameTextEditingController;
-  final auth_service service;
+  final AuthService service;
 
-  const auth_button({
+  const AuthButton({
     super.key,
     required this.widget,
     required this.otpTextEditingController,
@@ -18,10 +18,10 @@ class auth_button extends StatefulWidget {
   });
 
   @override
-  State<auth_button> createState() => _auth_buttonState();
+  State<AuthButton> createState() => _AuthButtonState();
 }
 
-class _auth_buttonState extends State<auth_button> {
+class _AuthButtonState extends State<AuthButton> {
   bool _loading = false;
 
   @override
@@ -31,9 +31,9 @@ class _auth_buttonState extends State<auth_button> {
         setState(() {
           _loading = true;
         }),
-        if (widget.service.otp_send)
+        if (widget.service.otpSend)
           {
-            widget.service.fun_otp_verify(
+            widget.service.FunOtpVerify(
               context,
               widget.numTextEditingController.text,
               widget.otpTextEditingController.text,
@@ -43,7 +43,7 @@ class _auth_buttonState extends State<auth_button> {
           }
         else
           {
-            widget.service.fun_otp_send(
+            widget.service.FunOtpSend(
               widget.numTextEditingController.text,
             ),
           },
@@ -62,7 +62,7 @@ class _auth_buttonState extends State<auth_button> {
           child: _loading
               ? const CircularProgressIndicator()
               : Text(
-                  widget.service.otp_send ? "Log In" : "Send OTP",
+                  widget.service.otpSend ? "Log In" : "Send OTP",
                   style: const TextStyle(
                     color: Color.fromRGBO(19, 105, 242, 1),
                     fontSize: 20,

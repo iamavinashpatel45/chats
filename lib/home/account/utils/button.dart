@@ -1,10 +1,9 @@
-import 'package:chats/home/account/services/account_service.dart';
 import 'package:flutter/material.dart';
 
-class account_button extends StatelessWidget {
+class accountButton extends StatelessWidget {
   final String text;
 
-  const account_button({
+  const accountButton({
     super.key,
     required this.text,
   });

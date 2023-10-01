@@ -1,6 +1,6 @@
 import 'package:chats/home/chat/modules/contact_module.dart';
 
-class local_data {
+class LocalData {
   static String? name;
   static String? uid;
   static String? image;

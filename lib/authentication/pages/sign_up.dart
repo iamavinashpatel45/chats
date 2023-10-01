@@ -6,15 +6,15 @@ import 'package:chats/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 
-class sign_up extends StatefulWidget {
-  const sign_up({super.key});
+class SignUp extends StatefulWidget {
+  const SignUp({super.key});
 
   @override
-  State<sign_up> createState() => _sign_upState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _sign_upState extends State<sign_up> {
-  final auth_service _auth_service = auth_service();
+class _SignUpState extends State<SignUp> {
+  final AuthService _authService = AuthService();
   final TextEditingController _numTextEditingController =
       TextEditingController();
   final TextEditingController _nameTextEditingController =
@@ -95,12 +95,12 @@ class _sign_upState extends State<sign_up> {
               const SizedBox(
                 height: 20,
               ),
-              auth_button(
-                widget: const home_page(),
+              AuthButton(
+                widget: const HomePage(),
                 otpTextEditingController: _otpTextEditingController,
                 numTextEditingController: _numTextEditingController,
                 nameTextEditingController: _nameTextEditingController,
-                service: _auth_service,
+                service: _authService,
               ),
               const SizedBox(
                 height: 20,

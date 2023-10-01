@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 
-class auth_service {
+class AuthService {
   String _verificationId = "";
   final auth = FirebaseAuth.instance;
   final store = FirebaseFirestore.instance;
-  bool otp_send = false;
+  bool otpSend = false;
 
-  // ignore: non_constant_identifier_names
-  Future<bool> fun_otp_verify(BuildContext context, String num, String otp,
+
+  Future<bool> FunOtpVerify(BuildContext context, String num, String otp,
       String name, Widget widget) async {
     try {
       await auth.signInWithCredential(
@@ -24,25 +24,25 @@ class auth_service {
         ),
       );
       if (auth.currentUser != null) {
-        String _uid = FirebaseAuth.instance.currentUser!.uid;
-        String _image = "";
+        String uid = FirebaseAuth.instance.currentUser!.uid;
+        String image = "";
         try {
-          _image = await FirebaseStorage.instance
+          image = await FirebaseStorage.instance
               .ref()
-              .child("image/$_uid")
+              .child("image/$uid")
               .getDownloadURL();
         } catch (e) {
           Fluttertoast.showToast(msg: "Somethig Went Wrong");
           return false;
         }
         await store.collection('numbers').doc(num).set({
-          "uid": _uid,
+          "uid": uid,
           "name": name,
-          "image": _image,
+          "image": image,
         });
-        final main_services _main_services = main_services();
-        await _main_services.set_online(_uid);
-        if (await _set_data(name, _uid, num, _image)) {
+        final MainServices mainServices = MainServices();
+        await mainServices.setOnline(uid);
+        if (await _setData(name, uid, num, image)) {
           // ignore: use_build_context_synchronously
           Navigator.pushAndRemoveUntil(
             context,
@@ -60,8 +60,7 @@ class auth_service {
     }
   }
 
-// ignore: non_constant_identifier_names
-  Future<void> fun_otp_send(String num) async {
+  Future<void> FunOtpSend(String num) async {
     try {
       await auth
           .verifyPhoneNumber(
@@ -75,23 +74,23 @@ class auth_service {
             verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {},
           )
           .then((value) => () {});
-      otp_send = true;
+      otpSend = true;
     } catch (e) {
       Fluttertoast.showToast(msg: "Somethig Went Wrong");
     }
   }
 
-  Future<bool> _set_data(
+  Future<bool> _setData(
       String name, String uid, String num, String image) async {
     final add = GetStorage();
     add.write("name", name);
     add.write("uid", uid);
     add.write("num", num);
     add.write("image", image);
-    local_data.name = name;
-    local_data.uid = uid;
-    local_data.num = num;
-    local_data.image = image;
+    LocalData.name = name;
+    LocalData.uid = uid;
+    LocalData.num = num;
+    LocalData.image = image;
     return true;
   }
 }

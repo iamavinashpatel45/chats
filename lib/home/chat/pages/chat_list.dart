@@ -14,7 +14,7 @@ class chat_list extends StatefulWidget {
 }
 
 class _chat_listState extends State<chat_list> {
-  final chats = FirebaseDatabase.instance.ref("chats/${local_data.uid}");
+  final chats = FirebaseDatabase.instance.ref("chats/${LocalData.uid}");
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class _chat_listState extends State<chat_list> {
               child: CircularProgressIndicator(),
             ),
             itemBuilder: (context, snapshot, animation, index) {
-              contacts_module contacts = local_data.contact[0];
-              for (var element in local_data.contact) {
+              contacts_module contacts = LocalData.contact[0];
+              for (var element in LocalData.contact) {
                 if (snapshot.key == element.id) {
                   contacts = element;
                   break;

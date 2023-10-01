@@ -27,7 +27,7 @@ class _live_chatState extends State<live_chat> {
   @override
   void initState() {
     chats = FirebaseDatabase.instance
-        .ref("chats/${local_data.uid}/${widget.contact.id}");
+        .ref("chats/${LocalData.uid}/${widget.contact.id}");
     super.initState();
   }
 
@@ -45,7 +45,7 @@ class _live_chatState extends State<live_chat> {
               )
             : widget.chat_service.mess_decrypt(
                 snapshot.child("message").value.toString(),
-                local_data.uid!,
+                LocalData.uid!,
               );
         return chat_display(
           mes: mes,

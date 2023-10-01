@@ -15,7 +15,7 @@ class chat_services {
     String str = contact.id!;
     text = mess_encrypt(text, str);
     await FirebaseDatabase.instance
-        .ref("chats/${local_data.uid}/$str")
+        .ref("chats/${LocalData.uid}/$str")
         .push()
         .set(
           chat_module(
@@ -27,7 +27,7 @@ class chat_services {
           ).toJson(),
         );
     await FirebaseDatabase.instance
-        .ref("chats/$str/${local_data.uid}")
+        .ref("chats/$str/${LocalData.uid}")
         .push()
         .set(
           chat_module(
@@ -81,12 +81,12 @@ class chat_services {
       final _storage = FirebaseStorage.instance.ref();
       String name = randomString(20);
       await _storage
-          .child("chat-images/${local_data.uid}/${contact.id}/$name")
+          .child("chat-images/${LocalData.uid}/${contact.id}/$name")
           .putFile(
             File(_image[0].path),
           );
       String link = await _storage
-          .child("chat-images/${local_data.uid}/${contact.id}/$name")
+          .child("chat-images/${LocalData.uid}/${contact.id}/$name")
           .getDownloadURL();
       send_message(link, contact, true);
     }

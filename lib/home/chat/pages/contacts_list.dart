@@ -40,12 +40,12 @@ class _contacts_listState extends State<contacts_list> {
                 return Column(
                   children: [
                     contacts_display(
-                      contact:local_data.contact[index],
+                      contact:LocalData.contact[index],
                     ),
                   ],
                 );
               },
-              itemCount: local_data.contact.length,
+              itemCount: LocalData.contact.length,
             )
           : const Center(
               child: CircularProgressIndicator(),

@@ -96,7 +96,7 @@ class chat_list_display extends StatelessWidget {
                                             .child("message")
                                             .value
                                             .toString(),
-                                        local_data.uid!,
+                                        LocalData.uid!,
                                       )
                                     : _chat_service.mess_decrypt(
                                         chat.children.last

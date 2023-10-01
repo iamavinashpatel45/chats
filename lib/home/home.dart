@@ -5,14 +5,14 @@ import 'package:chats/home/status/pages/status.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class home_page extends StatefulWidget {
-  const home_page({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<home_page> createState() => _home_pageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _home_pageState extends State<home_page> {
+class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +90,7 @@ class _home_pageState extends State<home_page> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const sign_up(),
+                      builder: (context) => const SignUp(),
                     ),
                     //(route) => false,
                   );
@@ -102,7 +102,7 @@ class _home_pageState extends State<home_page> {
         body: const TabBarView(
           children: [
             chat_list(),
-            status_page(),
+            StatusPage(),
           ],
         ),
       ),

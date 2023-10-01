@@ -14,20 +14,22 @@ void main() async {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: myapp(),
+      home: const MyApp(),
     ),
   );
 }
 
-class myapp extends StatefulWidget {
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
-  State<myapp> createState() => _myappState();
+  State<MyApp> createState() => _MyAppState();
 }
 
-class _myappState extends State<myapp> {
-  final main_services _main_services = main_services();
+class _MyAppState extends State<MyApp> {
+  final MainServices _mainServices = MainServices();
   Future<void> navigation() async {
-    _main_services.navigation(context);
+    _mainServices.navigation(context);
   }
 
   @override

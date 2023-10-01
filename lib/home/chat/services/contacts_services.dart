@@ -34,7 +34,7 @@ class contacts_service {
         }
       }
     }
-    local_data.contact = contact_modul;
+    LocalData.contact = contact_modul;
     box.write("contact", contact_modul);
     return true;
   }

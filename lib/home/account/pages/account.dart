@@ -12,10 +12,10 @@ class account extends StatefulWidget {
 class _accountState extends State<account> {
   bool _isimageload = false;
   bool _isupdate = false;
-  final account_service _account_service = account_service();
+  final accountService _accountService = accountService();
 
   void _getimage() async {
-    await _account_service.pick_image();
+    await _accountService.pickImage();
     setState(() {
       _isimageload = true;
     });
@@ -35,19 +35,19 @@ class _accountState extends State<account> {
               children: [
                 Center(
                   child: !_isimageload
-                      ? local_data.image!.isEmpty
+                      ? LocalData.image!.isEmpty
                           ? const CircleAvatar(
                               radius: 100,
                               foregroundImage: AssetImage("assets/avatar.jpg"),
                             )
                           : CircleAvatar(
                               radius: 100,
-                              foregroundImage: NetworkImage(local_data.image!),
+                              foregroundImage: NetworkImage(LocalData.image!),
                             )
                       : CircleAvatar(
                           foregroundImage: FileImage(
                             File(
-                              _account_service.images![0].path,
+                              _accountService.images![0].path,
                             ),
                           ),
                           radius: 100,
@@ -79,12 +79,12 @@ class _accountState extends State<account> {
                     )
                     : InkWell(
                         onTap: () {
-                          _account_service.update_image(context);
+                          _accountService.updateImage(context);
                           setState(() {
                             _isupdate = true;
                           });
                         },
-                        child: const account_button(
+                        child: const accountButton(
                           text: "Update",
                         ),
                       )

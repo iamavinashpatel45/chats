@@ -3,16 +3,14 @@ import 'package:chats/services/main_services.dart';
 import 'package:flutter/widgets.dart';
 
 class MyAppLifecycleObserver extends WidgetsBindingObserver {
-  final main_services _main_services = main_services();
+  final MainServices _mainServices = MainServices();
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    print("state changed");
-    print(state.toString());
     if (state == AppLifecycleState.paused) {
-      _main_services.set_offine(local_data.uid!);
+      _mainServices.setOffine(LocalData.uid!);
     } else if (state == AppLifecycleState.resumed) {
-      _main_services.set_online(local_data.uid!);
+      _mainServices.setOnline(LocalData.uid!);
     }
   }
 }
