@@ -12,15 +12,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class MainServices {
   Future setOnline(String uid) async {
-    await FirebaseDatabase.instance
-        .ref("online-status/$uid")
-        .set({"online": true, "lastseen": ""});
+    await FirebaseDatabase.instance.ref("online-status/$uid").set({
+      "online": true,
+      "lastseen": "",
+    });
   }
 
   Future setOffine(String uid) async {
     await FirebaseDatabase.instance.ref("online-status/$uid").set({
       "online": false,
-      "lastseen": "${DateTime.now().hour}:${DateTime.now().minute}"
+      "lastseen": "${DateTime.now().hour}:${DateTime.now().minute}",
     });
   }
 

@@ -20,6 +20,7 @@ class _chat_listState extends State<chat_list> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         onPressed: () {
           Navigator.push(
             context,
@@ -28,28 +29,31 @@ class _chat_listState extends State<chat_list> {
             ),
           );
         },
-        child: const Icon(Icons.chat),
+        child: const Icon(
+          Icons.chat,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
         child: FirebaseAnimatedList(
-            query: chats,
-            defaultChild: const Center(
-              child: CircularProgressIndicator(),
-            ),
-            itemBuilder: (context, snapshot, animation, index) {
-              contacts_module contacts = LocalData.contact[0];
-              for (var element in LocalData.contact) {
-                if (snapshot.key == element.id) {
-                  contacts = element;
-                  break;
-                }
+          query: chats,
+          defaultChild: const Center(
+            child: CircularProgressIndicator(),
+          ),
+          itemBuilder: (context, snapshot, animation, index) {
+            contacts_module contacts = LocalData.contact[0];
+            for (var element in LocalData.contact) {
+              if (snapshot.key == element.id) {
+                contacts = element;
+                break;
               }
-              return chat_list_display(
-                chat: snapshot,
-                contact: contacts,
-              );
-            }),
+            }
+            return chat_list_display(
+              chat: snapshot,
+              contact: contacts,
+            );
+          },
+        ),
       ),
     );
   }
